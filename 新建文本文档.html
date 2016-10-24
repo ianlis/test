@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<style type="text/css">
+table {
+	font-family: 'Microsoft Yahei', Verdana, Arial, Helvetica, AppleGothic, sans-serif;
+	font-size: 62.5%;
+	border-collapse: collapse;
+}
+
+table td {
+	border: 1px solid #b5b5b5;
+	padding: 5px 10px;
+}
+
+table td {
+	font-size: 10px;
+	min-width: 80px;
+}
+</style>
+</head>
+<body>
+	<input id="number" type="hidden" value="sz000651,sz002365,sz300208,sh603703" />
+	<table>
+		<thead>
+			<tr>
+				<td>名称</td>
+				<td>当前</td>
+				<td>最高</td>
+				<td>最低</td>
+				<td>昨天</td>
+			</tr>
+		</thead>
+	</table>
+
+	<script type="text/javascript" src="http://libs.baidu.com/jquery/2.0.0/jquery.js"></script>
+	<script type="text/javascript">
+		var str = $("#number").val();
+		if (str != null && str != "")
+			postData();
+	
+		function postData() {
+			$.ajax({
+				url : "http://hq.sinajs.cn/list=" + str,
+				type : "GET",
+				dataType : "script",
+				cache : true,
+				success : function(data) {
+					$("table>tbody>tr").remove();
+					$.each(str.split(","), function(k, v) {
+						var val = eval("hq_str_" + v).split(",");
+						//if(val[0] == '格力电器' && (val[3] * 1000 < 21800 || val[3] * 1000 > 22500))
+							//alert('hello');
+							
+						var tr = $("<tr></tr>").appendTo($("table"));
+						tr.append("<td>" + val[0] + "</td>");
+						tr.append("<td>" + val[3] + "</td>");
+						tr.append("<td>" + val[4] + "</td>");
+						tr.append("<td>" + val[5] + "</td>");
+						tr.append("<td>" + val[2] + "</td>");
+					});
+					setTimeout("postData()", 1000);
+				}
+			});
+		}
+	</script>
+</body>
+</html>
