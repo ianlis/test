@@ -47,17 +47,20 @@ table td {
 				dataType : "script",
 				cache : true,
 				success : function(data) {
-					$("table>tbody>tr").remove();
+					console.clear();
+// 					$("table>tbody>tr").remove();
 					$.each(str.split(","), function(k, v) {
-						var val = eval("hq_str_" + v).split(",");
+// 						var val = eval("hq_str_" + v).split(",");
 							
-						var tr = $("<tr></tr>").appendTo($("table"));
-						tr.append("<td>" + val[0] + "</td>");
-						tr.append("<td>" + val[3] + "</td>");
-						tr.append("<td>" + val[4] + "</td>");
-						tr.append("<td>" + val[5] + "</td>");
-						tr.append("<td>" + val[2] + "</td>");
+// 						var tr = $("<tr></tr>").appendTo($("table"));
+// 						tr.append("<td>" + val[0] + "</td>");
+// 						tr.append("<td>" + val[3] + "</td>");
+// 						tr.append("<td>" + val[4] + "</td>");
+// 						tr.append("<td>" + val[5] + "</td>");
+// 						tr.append("<td>" + val[2] + "</td>");
+						console.log(val[0] + "-->" + val[3] + "--" + val[4] + "--" + val[5]);
 					});
+					
 					setTimeout("postData()", 1000);
 				}
 			});
