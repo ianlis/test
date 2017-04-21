@@ -63,6 +63,9 @@ table td {
 					console.log(val[2] + "--" + val[4] + "--" + val[5] + "--" + val[3]);
 					
 					setTimeout("postData()", 1000);
+				},
+				error : function(){
+					setTimeout("postData()", 1000);
 				}
 			});
 		}
